@@ -1,0 +1,21 @@
+package functions;
+
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.*;
+
+public class CompositeFunctionTest {
+
+    private final CompositeFunction composite1 = new CompositeFunction(new TenthFunction(), new SqrFunction());
+
+    private final CompositeFunction composite2 = new CompositeFunction(composite1, new SqrFunction());
+    @Test
+    public void testFunction() {
+        assertEquals(composite1.apply(50), 25, 0.000001);
+        assertEquals(composite1.apply(60), 36, 0.00001);
+        assertEquals(composite1.apply(40), 16, 0.00001);
+        assertEquals(composite2.apply(10), 1, 0.000001);
+        assertEquals(composite2.apply(20), 16, 0.00001);
+        assertEquals(composite2.apply(-30), 81, 0.00001);
+    }
+}
