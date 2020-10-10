@@ -6,10 +6,12 @@ import static org.testng.Assert.*;
 
 public class IdentityFunctionTest {
 
+    private final MathFunction identity=new IdentityFunction();
     @Test
-    public void testAplly() {
-        assertEquals(1,1);
-        assertEquals(1,5);
-        assertEquals(10,10);
+    public void testApply() {
+        assertEquals(identity.apply(5),5,0.00001);
+        assertEquals(identity.apply(9),9,0.00001);
+        assertEquals(identity.apply(7),7,0.00001);
     }
+
 }

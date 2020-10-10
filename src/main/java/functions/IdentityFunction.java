@@ -1,8 +1,9 @@
 package functions;
 
 
-public class IdentityFunction {
-    double aplly(double x) {
+public class IdentityFunction implements MathFunction{
+    @Override
+    public double apply(double x) {
 
         return x;
 
