@@ -10,7 +10,7 @@ public class RadGradFunctionTest {
     @Test
     public void testApply() {
         float pi= (float) 3.14;
-        assertEquals(radgrad.apply(1),57.3248407,0.00001);
-        assertEquals(radgrad.apply(pi),180,0.00001);
+        assertEquals(radgrad.apply(1),57.29577951,0.00001);
+        assertEquals(radgrad.apply(pi),180,0.1);
     }
 }
