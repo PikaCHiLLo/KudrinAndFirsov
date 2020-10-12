@@ -6,7 +6,7 @@ import static org.testng.Assert.*;
 
 public class ZeroFunctionTest {
 
-    private final ZeroFunction zero = new ZeroFunction();
+    public ZeroFunction zero = new ZeroFunction();
     @Test
     public void testZero() {
         assertEquals(zero.apply(1), 0, 0.0001);
