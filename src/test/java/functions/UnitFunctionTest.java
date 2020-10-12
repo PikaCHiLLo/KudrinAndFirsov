@@ -6,7 +6,7 @@ import static org.testng.Assert.*;
 
 public class UnitFunctionTest {
 
-    private final UnitFunction unit = new UnitFunction();
+    UnitFunction unit = new UnitFunction();
     @Test
     public void testZero() {
         assertEquals(unit.apply(1), 1, 0.0001);
