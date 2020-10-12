@@ -1,6 +1,7 @@
-package functions;
+package ru.ssau.tk.kaf.kudrinandfirsov;
 
 import org.testng.annotations.Test;
+import ru.ssau.tk.kaf.kudrinandfirsov.ConstantFunction;
 
 import static org.testng.Assert.*;
 

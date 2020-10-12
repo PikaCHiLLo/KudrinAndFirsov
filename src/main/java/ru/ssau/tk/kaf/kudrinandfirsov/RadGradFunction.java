@@ -1,4 +1,4 @@
-package functions;
+package ru.ssau.tk.kaf.kudrinandfirsov;
 
 import java.lang.Math;
 

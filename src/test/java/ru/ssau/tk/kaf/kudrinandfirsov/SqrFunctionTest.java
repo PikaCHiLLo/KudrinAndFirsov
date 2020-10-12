@@ -1,6 +1,8 @@
-package functions;
+package ru.ssau.tk.kaf.kudrinandfirsov;
 
 import org.testng.annotations.Test;
+import ru.ssau.tk.kaf.kudrinandfirsov.MathFunction;
+import ru.ssau.tk.kaf.kudrinandfirsov.SqrFunction;
 
 import static org.testng.Assert.*;
 

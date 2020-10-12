@@ -1,4 +1,4 @@
-package functions;
+package ru.ssau.tk.kaf.kudrinandfirsov;
 
 public class CompositeFunction implements MathFunction {
     private final MathFunction firstFunction;
@@ -11,5 +11,4 @@ public class CompositeFunction implements MathFunction {
     public double apply(double x) {
         return secondFunction.apply(firstFunction.apply(x));
     }
-
 }

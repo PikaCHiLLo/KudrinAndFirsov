@@ -1,4 +1,4 @@
-package functions;
+package ru.ssau.tk.kaf.kudrinandfirsov;
 
 public class TenthFunction implements MathFunction {
     @Override
