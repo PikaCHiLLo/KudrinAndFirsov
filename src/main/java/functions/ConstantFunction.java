@@ -1,12 +1,17 @@
 package functions;
 
-public class ConstantFunction implements MathFunction{
+public class ConstantFunction implements MathFunction {
     private final double constant;
-    public ConstantFunction  (double x1) {
-        constant=x1;
+    public double getConstant() {
+        return constant;
     }
+
+    public ConstantFunction(double constant) {
+        this.constant = constant;
+    }
+
     @Override
-    public double apply (double x){
+    public double apply(double x) {
         return constant;
     }
 }
