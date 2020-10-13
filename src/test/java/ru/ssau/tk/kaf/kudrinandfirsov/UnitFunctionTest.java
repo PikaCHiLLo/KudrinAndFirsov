@@ -1,7 +1,7 @@
 package ru.ssau.tk.kaf.kudrinandfirsov;
 
 import org.testng.annotations.Test;
-import ru.ssau.tk.kaf.kudrinandfirsov.UnitFunction;
+import ru.ssau.tk.kaf.kudrinandfirsov.functions.UnitFunction;
 
 import static org.testng.Assert.*;
 

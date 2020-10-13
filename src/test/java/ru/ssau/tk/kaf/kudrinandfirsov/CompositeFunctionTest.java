@@ -1,9 +1,9 @@
 package ru.ssau.tk.kaf.kudrinandfirsov;
 
 import org.testng.annotations.Test;
-import ru.ssau.tk.kaf.kudrinandfirsov.CompositeFunction;
-import ru.ssau.tk.kaf.kudrinandfirsov.SqrFunction;
-import ru.ssau.tk.kaf.kudrinandfirsov.TenthFunction;
+import ru.ssau.tk.kaf.kudrinandfirsov.functions.CompositeFunction;
+import ru.ssau.tk.kaf.kudrinandfirsov.functions.SqrFunction;
+import ru.ssau.tk.kaf.kudrinandfirsov.functions.TenthFunction;
 
 import static org.testng.Assert.*;
 

@@ -1,8 +1,8 @@
 package ru.ssau.tk.kaf.kudrinandfirsov;
 
 import org.testng.annotations.Test;
-import ru.ssau.tk.kaf.kudrinandfirsov.MathFunction;
-import ru.ssau.tk.kaf.kudrinandfirsov.RadGradFunction;
+import ru.ssau.tk.kaf.kudrinandfirsov.functions.MathFunction;
+import ru.ssau.tk.kaf.kudrinandfirsov.functions.RadGradFunction;
 
 import static org.testng.Assert.*;
 

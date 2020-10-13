@@ -1,5 +1,9 @@
 package ru.ssau.tk.kaf.kudrinandfirsov;
 
+import ru.ssau.tk.kaf.kudrinandfirsov.functions.MathFunction;
+import ru.ssau.tk.kaf.kudrinandfirsov.functions.SqrFunction;
+import ru.ssau.tk.kaf.kudrinandfirsov.functions.TenthFunction;
+import ru.ssau.tk.kaf.kudrinandfirsov.functions.UnitFunction;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
