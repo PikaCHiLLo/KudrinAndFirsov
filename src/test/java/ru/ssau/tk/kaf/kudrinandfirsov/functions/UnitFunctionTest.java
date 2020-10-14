@@ -1,4 +1,4 @@
-package ru.ssau.tk.kaf.kudrinandfirsov;
+package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
 import org.testng.annotations.Test;
 import ru.ssau.tk.kaf.kudrinandfirsov.functions.UnitFunction;
@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class UnitFunctionTest {
 
-    UnitFunction unit = new UnitFunction();
+    public UnitFunction unit = new UnitFunction();
 
     @Test
     public void testZero() {

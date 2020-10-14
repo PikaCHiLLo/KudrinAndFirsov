@@ -1,4 +1,4 @@
-package ru.ssau.tk.kaf.kudrinandfirsov;
+package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
 import ru.ssau.tk.kaf.kudrinandfirsov.functions.MathFunction;
 import ru.ssau.tk.kaf.kudrinandfirsov.functions.SqrFunction;
