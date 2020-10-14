@@ -17,7 +17,7 @@ public class MathFunctionTest {
     @Test
     public void testAndThen() {
         assertEquals(tenth.andThen(sqr).apply(40), 16.0, 0.1);
-        assertEquals(unit.andThen(tenth).apply(7), 0.1,0.1);
-        assertEquals(unit.andThen(tenth).andThen(sqr).apply(67), 0.01,0.1);
+        assertEquals(unit.andThen(tenth).apply(7), 0.1, 0.1);
+        assertEquals(unit.andThen(tenth).andThen(sqr).apply(67), 0.01, 0.1);
     }
 }

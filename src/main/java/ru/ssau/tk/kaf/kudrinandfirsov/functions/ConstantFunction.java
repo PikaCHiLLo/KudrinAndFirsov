@@ -2,6 +2,7 @@ package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
 public class ConstantFunction implements MathFunction {
     private final double constant;
+
     public double getConstant() {
         return constant;
     }

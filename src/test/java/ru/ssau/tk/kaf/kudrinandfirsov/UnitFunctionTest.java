@@ -8,6 +8,7 @@ import static org.testng.Assert.*;
 public class UnitFunctionTest {
 
     UnitFunction unit = new UnitFunction();
+
     @Test
     public void testZero() {
         assertEquals(unit.apply(1), 1, 0.0001);
