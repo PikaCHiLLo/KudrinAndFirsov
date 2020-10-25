@@ -25,6 +25,6 @@ public class CompositeFunctionTest {
         assertEquals(composite2.apply(-30), 81, 0.00001);
         assertEquals(composite3.apply(66), 0, 0.00001);
         assertEquals(composite3.apply(12), 0, 0.00001);
-        assertEquals(composite3.apply(87), 0, 0.00001);
+        assertEquals(composite3.apply(88), 0, 0.00001);
     }
 }
