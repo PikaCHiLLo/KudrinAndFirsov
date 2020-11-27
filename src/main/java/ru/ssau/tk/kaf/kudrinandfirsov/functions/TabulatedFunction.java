@@ -5,7 +5,7 @@ public interface TabulatedFunction extends MathFunction {
 
     double getX(int index); //метод, получающий значение аргумента x по номеру индекса
 
-    double getY(int index); //метод, получающий значение аргумента x по номеру индекса
+    double getY(int index); //метод, получающий значение аргумента y по номеру индекса
 
     void setY(int index, double value); //метод, получающий значение аргумента x по номеру индекса
 

@@ -87,16 +87,16 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     public int floorIndexOfX(double x) {
-        if (x == leftBound()) {
+        if (x < leftBound()) {
             return 0;
         }
 
-        if (x == rightBound()) {
-            return count;
+        if (x > rightBound()) {
+            return count - 1;
         }
-        for (int i = 1; i != count; i++) {
-            if (x == xValues[i]) {
-                return i - 1;
+        for (int i = 0; i != count; i++) {
+            if ((x > xValues[i]) && (x < xValues[i + 1])) {
+                return i;
             }
         }
         return -1;
@@ -105,7 +105,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     @Override
     public double extrapolateLeft(double x) {
         if (count == 1) {
-            return yValues[1];
+            return yValues[0];
         }
         return interpolate(x, xValues[0], xValues[1], yValues[0], yValues[1]);
     }
@@ -113,23 +113,23 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     @Override
     public double extrapolateRight(double x) {
         if (count == 1) {
-            return yValues[1];
+            return yValues[0];
         }
         return interpolate(x, xValues[count - 2], xValues[count - 1], yValues[count - 2], yValues[count - 1]);
     }
 
     @Override
-    public double interpolate(double x, int floorIndex) {
+    public double interpolate(double x, int floorIndexOfX) {
         if (count == 1) {
-            return yValues[1];
+            return yValues[0];
         }
-        if (floorIndex == 0) {
+        if (floorIndexOfX == 0) {
             return extrapolateLeft(x);
         }
-        if (floorIndex == count) {
+        if (floorIndexOfX == count - 1) {
             return extrapolateRight(x);
         }
-        return interpolate(x, xValues[floorIndex], xValues[floorIndex + 1], yValues[floorIndex], yValues[floorIndex + 1]);
+        return interpolate(x, xValues[floorIndexOfX], xValues[floorIndexOfX + 1], yValues[floorIndexOfX], yValues[floorIndexOfX + 1]);
     }
 
 }
