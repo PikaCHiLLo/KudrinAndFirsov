@@ -1,5 +1,8 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
+import ru.ssau.tk.kaf.kudrinandfirsov.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.kaf.kudrinandfirsov.exceptions.DifferentLengthOfArraysException;
+
 public abstract class AbstractTabulatedFunction implements TabulatedFunction {
 
     protected abstract int floorIndexOfX(double x);
@@ -27,4 +30,19 @@ public abstract class AbstractTabulatedFunction implements TabulatedFunction {
             return interpolate(x, floorIndexOfX(x));
         }
     }
+
+    static void checkLengthIsTheSame(double[] xValues, double[] yValues) {
+        if (xValues.length != yValues.length) {
+            throw new DifferentLengthOfArraysException("длины массивов не совпадают");
+        }
+    }
+
+    static void checkSorted(double[] xValues) {
+        for (int i = 0; i < xValues.length - 1; i++) {
+            if (xValues[i] > xValues[i + 1]) {
+                throw new ArrayIsNotSortedException("иксы не отсортированы");
+            }
+        }
+    }
+
 }
