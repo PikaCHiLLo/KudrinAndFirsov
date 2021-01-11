@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class UnitFunctionTest {
 
-    public UnitFunction unit = new UnitFunction();
+    private final UnitFunction unit = new UnitFunction();
 
     @Test
     public void testZero() {
