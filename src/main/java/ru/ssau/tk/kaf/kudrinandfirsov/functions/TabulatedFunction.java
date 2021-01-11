@@ -1,6 +1,6 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
-public interface TabulatedFunction extends MathFunction {
+public interface TabulatedFunction extends MathFunction, Iterable<Point> {
     int getCount(); //метод получения количества табулированных значений
 
     double getX(int index); //метод, получающий значение аргумента x по номеру индекса

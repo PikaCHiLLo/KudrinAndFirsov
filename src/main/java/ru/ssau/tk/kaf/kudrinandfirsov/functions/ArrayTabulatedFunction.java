@@ -1,6 +1,7 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
@@ -129,4 +130,8 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         return interpolate(x, xValues[floorIndexOfX], xValues[floorIndexOfX + 1], yValues[floorIndexOfX], yValues[floorIndexOfX + 1]);
     }
 
+    @Override
+    public Iterator iterator() {
+        throw new UnsupportedOperationException();
+    }
 }

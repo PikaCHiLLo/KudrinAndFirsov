@@ -1,5 +1,7 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
+import java.util.Iterator;
+
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     private Node head;
@@ -184,5 +186,10 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         Node left = getNode(floorIndex);
         Node right = left.next;
         return interpolate(x, left.x, right.x, left.y, right.y);
+    }
+
+    @Override
+    public Iterator iterator() {
+        throw new UnsupportedOperationException();
     }
 }
