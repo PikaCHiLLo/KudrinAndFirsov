@@ -134,4 +134,24 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(arrayTabulatedMathChangeFromToFunction.interpolate(2.2, arrayTabulatedMathChangeFromToFunction.floorIndexOfX(2.2)), 0.22, error);
         assertEquals(arrayTabulatedMathChangeFromToFunction.interpolate(10, arrayTabulatedMathChangeFromToFunction.floorIndexOfX(10)), 1, error);
     }
+
+    @Test
+    public void testIteratorCycleWhile() {
+        Iterator<Point> iterator = getDefinedThroughArrays().iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(getDefinedThroughArrays().getX(i), point.x, error);
+            assertEquals(getDefinedThroughArrays().getY(i++), point.y, error);
+        }
+        assertThrows(NoSuchElementException.class, iterator::next);
+    }
+    @Test
+    public void testIteratorCycleForEach() {
+        int i = 0;
+        for (Point point : getDefinedThroughArrays()) {
+            assertEquals(getDefinedThroughArrays().getX(i), point.x, error);
+            assertEquals(getDefinedThroughArrays().getY(i++), point.y, error);
+        }
+    }
 }
