@@ -11,6 +11,8 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     protected int count;
 
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
+        checkLengthIsTheSame(xValues,yValues);
+        checkSorted(xValues);
         if (xValues.length < 2) {
             throw new IllegalArgumentException("недопустимый размер(меньше двух)");
         }
