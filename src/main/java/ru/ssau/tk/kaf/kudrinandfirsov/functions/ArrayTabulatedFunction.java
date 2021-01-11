@@ -9,12 +9,18 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     protected int count;
 
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
+        if (xValues.length < 2) {
+            throw new IllegalArgumentException("недопустимый размер(меньше двух)");
+        }
         count = xValues.length;
         this.xValues = Arrays.copyOf(xValues, count);
         this.yValues = Arrays.copyOf(yValues, count);
     }
 
     public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+        if (count < 2) {
+            throw new IllegalArgumentException("недопустимый размер(меньше двух)");
+        }
         if (xFrom > xTo) {
             double x = xFrom;
             xFrom = xTo;
@@ -88,7 +94,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     @Override
     public int floorIndexOfX(double x) {
         if (x < leftBound()) {
-            return 0;
+            throw new IllegalArgumentException("x меньше левой границы");
         }
 
         if (x > rightBound()) {
@@ -104,25 +110,16 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     public double extrapolateLeft(double x) {
-        if (count == 1) {
-            return yValues[0];
-        }
         return interpolate(x, xValues[0], xValues[1], yValues[0], yValues[1]);
     }
 
     @Override
     public double extrapolateRight(double x) {
-        if (count == 1) {
-            return yValues[0];
-        }
         return interpolate(x, xValues[count - 2], xValues[count - 1], yValues[count - 2], yValues[count - 1]);
     }
 
     @Override
     public double interpolate(double x, int floorIndexOfX) {
-        if (count == 1) {
-            return yValues[0];
-        }
         if (floorIndexOfX == 0) {
             return extrapolateLeft(x);
         }
