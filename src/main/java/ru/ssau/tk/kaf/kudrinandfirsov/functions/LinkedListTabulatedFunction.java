@@ -29,6 +29,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
             newNode.y = y;
             Node last = head.prev;
             last.next = newNode;
+            head.prev = newNode;
+            newNode.prev = last;
+            newNode.next = head;
         }
         count++;
     }
@@ -36,7 +39,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
         checkLengthIsTheSame(xValues,yValues);
         checkSorted(xValues);
-        this.count = xValues.length;
         if (xValues.length < 2) {
             throw new IllegalArgumentException("недопустимый размер узла(меньше двух)");
         }
@@ -46,7 +48,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
-        this.count = count;
         if (count < 2) {
             throw new IllegalArgumentException("недопустимый размер узла(меньше двух)");
         }

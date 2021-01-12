@@ -17,7 +17,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         if (xValues.length < 2) {
             throw new IllegalArgumentException("недопустимый размер(меньше двух)");
         }
-        count = xValues.length;
+        this.count = xValues.length;
         this.xValues = Arrays.copyOf(xValues, count);
         this.yValues = Arrays.copyOf(yValues, count);
     }
