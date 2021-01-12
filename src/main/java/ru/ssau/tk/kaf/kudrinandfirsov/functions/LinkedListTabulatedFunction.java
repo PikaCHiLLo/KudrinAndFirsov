@@ -1,6 +1,8 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
+import ru.ssau.tk.kaf.kudrinandfirsov.exceptions.InterpolationException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
@@ -27,16 +29,16 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
             newNode.y = y;
             Node last = head.prev;
             last.next = newNode;
-            head.prev = newNode;
-            newNode.prev = last;
-            newNode.next = head;
         }
         count++;
     }
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
+        checkLengthIsTheSame(xValues,yValues);
+        checkSorted(xValues);
+        this.count = xValues.length;
         if (xValues.length < 2) {
-            throw new IllegalArgumentException("недопустимый размер(меньше двух)");
+            throw new IllegalArgumentException("недопустимый размер узла(меньше двух)");
         }
         for (int i = 0; i < xValues.length; i++) {
             this.addNode(xValues[i], yValues[i]);
@@ -44,8 +46,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+        this.count = count;
         if (count < 2) {
-            throw new IllegalArgumentException("недопустимый размер(меньше двух)");
+            throw new IllegalArgumentException("недопустимый размер узла(меньше двух)");
         }
         double step = (xTo - xFrom) / (count - 1);
         for (int i = 0; i < count; i++) {
@@ -94,11 +97,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
             }
         }
         return head.prev;
-    }
-
-    protected double interpolate(double x, Node floorNode) {
-        Node right = floorNode.next;
-        return interpolate(x, floorNode.x, right.x, floorNode.y, right.y);
     }
 
     @Override
@@ -182,14 +180,57 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     @Override
-    protected double interpolate(double x, int floorIndex) {
-        Node left = getNode(floorIndex);
+    protected double interpolate(double x, int floorIndexOfX) {
+        if (x < getNode(floorIndexOfX).x || x > getNode(floorIndexOfX + 1).x) {
+            throw new InterpolationException("x не в рамках интерполяции");
+        }
+        Node left = getNode(floorIndexOfX);
+        Node right = left.next;
+        return interpolate(x, left.x, right.x, left.y, right.y);
+    }
+
+    protected double interpolate(double x, Node floorNodeOfX) {
+        if (head.x == head.prev.x) {
+            return x;
+        }
+        Node left = floorNodeOfX;
         Node right = left.next;
         return interpolate(x, left.x, right.x, left.y, right.y);
     }
 
     @Override
-    public Iterator iterator() {
-        throw new UnsupportedOperationException();
+    public double apply(double x) {
+        if (x < leftBound()) {
+            return extrapolateLeft(x);
+        }
+        if (x > rightBound()) {
+            return extrapolateRight(x);
+        }
+        if (indexOfX(x) != -1) {
+            return getY(indexOfX(x));
+        } else {
+            return interpolate(x, floorNodeOfX(x));
+        }
+    }
+
+    @Override
+    public Iterator<Point> iterator() {
+        return new Iterator<Point>() {
+
+            private Node node = head;
+
+            public boolean hasNext() {
+                return (node != null);
+            }
+            public Point next() {
+
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                Point point = new Point(node.x, node.y);
+                node = (node != head.prev) ? node.next : null;
+                return point;
+            }
+        };
     }
 }

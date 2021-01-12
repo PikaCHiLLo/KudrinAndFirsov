@@ -1,5 +1,6 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
+import ru.ssau.tk.kaf.kudrinandfirsov.exceptions.InterpolationException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -129,6 +130,9 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         }
         if (floorIndexOfX == count - 1) {
             return extrapolateRight(x);
+        }
+        if (x < xValues[floorIndexOfX] || x > xValues[floorIndexOfX + 1]) {
+            throw new InterpolationException("x не в рамках интерполяции");
         }
         return interpolate(x, xValues[floorIndexOfX], xValues[floorIndexOfX + 1], yValues[floorIndexOfX], yValues[floorIndexOfX + 1]);
     }

@@ -1,18 +1,34 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
+import ru.ssau.tk.kaf.kudrinandfirsov.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.kaf.kudrinandfirsov.exceptions.DifferentLengthOfArraysException;
+import ru.ssau.tk.kaf.kudrinandfirsov.exceptions.InterpolationException;
+import java.util.NoSuchElementException;
+import java.util.Iterator;
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 public class ArrayTabulatedFunctionTest {
 
     private final static double error = 0.0005;
-    private final double[] xValues = new double[]{-3, -2, -1, 0, 1, 2, 3, 4, 5};
-    private final double[] yValues = new double[]{-6, -4, -2, 0, 2, 4, 6, 8, 10};
+    ArrayTabulatedFunction arrayTabulatedFunction;
+    ArrayTabulatedFunction arrayTabulatedMathFunction;
+    ArrayTabulatedFunction arrayTabulatedMathChangeFromToFunction;
     private final MathFunction tenthFunction = new TenthFunction();
-    ArrayTabulatedFunction arrayTabulatedFunction = new ArrayTabulatedFunction(xValues, yValues);
-    ArrayTabulatedFunction arrayTabulatedMathFunction = new ArrayTabulatedFunction(tenthFunction, 1, 9, 17);
-    ArrayTabulatedFunction arrayTabulatedMathChangeFromToFunction = new ArrayTabulatedFunction(tenthFunction, 9, 1, 17);
+
+    public AbstractTabulatedFunction arrayTabulatedFunction() {
+        final double[] xValues = new double[]{-3, -2, -1, 0, 1, 2, 3, 4, 5};
+        final double[] yValues = new double[]{-6, -4, -2, 0, 2, 4, 6, 8, 10};
+        return arrayTabulatedFunction = new ArrayTabulatedFunction(xValues, yValues);
+    }
+
+    public AbstractTabulatedFunction arrayTabulatedMathFunction() {
+        return arrayTabulatedMathFunction = new ArrayTabulatedFunction(tenthFunction, 1, 9, 17);
+    }
+
+    public AbstractTabulatedFunction arrayTabulatedMathChangeFromToFunction() {
+        return arrayTabulatedMathChangeFromToFunction = new ArrayTabulatedFunction(tenthFunction, 9, 1, 17);
+    }
 
     @Test
     public void testGetCount() {
@@ -136,22 +152,45 @@ public class ArrayTabulatedFunctionTest {
     }
 
     @Test
-    public void testIteratorCycleWhile() {
-        Iterator<Point> iterator = getDefinedThroughArrays().iterator();
+    public void testInterpolationException() {
+        assertThrows(InterpolationException.class, () -> {
+            arrayTabulatedFunction().interpolate(-2, 1);
+            arrayTabulatedMathFunction().interpolate(-1, 5);
+            arrayTabulatedMathFunction().interpolate(-2, 3);
+            arrayTabulatedMathChangeFromToFunction().interpolate(-1, 5);
+            arrayTabulatedMathChangeFromToFunction().interpolate(-2, 3);
+        });
+    }
+    @Test
+    public void testCheckLengthIsTheSame() {
+        assertThrows(DifferentLengthOfArraysException.class, () -> {
+            new ArrayTabulatedFunction(new double[]{1, 2, 3, 4, 5}, new double[]{1, 2, 3, 4});
+            new ArrayTabulatedFunction(new double[]{1, 2, 3, 4}, new double[]{1, 2, 3, 4, 5});
+            new ArrayTabulatedFunction(new double[]{1}, new double[]{});
+        });
+    }
+    @Test
+    public void testCheckSorted() {
+        assertThrows(ArrayIsNotSortedException.class, () -> {
+            new ArrayTabulatedFunction(new double[]{5, 2, 3, 4, 5}, new double[]{1, 2, 3, 4, 5});
+            new ArrayTabulatedFunction(new double[]{1, 5, 3, 4}, new double[]{1, 2, 3, 4});
+            new ArrayTabulatedFunction(new double[]{3, 2}, new double[]{1, 2});
+        });
+    }
+    @Test
+    public void testIterator() {
+        Iterator<Point> iterator = arrayTabulatedFunction().iterator();
         int i = 0;
         while (iterator.hasNext()) {
             Point point = iterator.next();
-            assertEquals(getDefinedThroughArrays().getX(i), point.x, error);
-            assertEquals(getDefinedThroughArrays().getY(i++), point.y, error);
+            assertEquals(point.x, arrayTabulatedFunction().getX(i++));
         }
-        assertThrows(NoSuchElementException.class, iterator::next);
-    }
-    @Test
-    public void testIteratorCycleForEach() {
-        int i = 0;
-        for (Point point : getDefinedThroughArrays()) {
-            assertEquals(getDefinedThroughArrays().getX(i), point.x, error);
-            assertEquals(getDefinedThroughArrays().getY(i++), point.y, error);
+        assertThrows(NoSuchElementException.class, () -> {
+            Point point = iterator.next();
+        });
+        i = 0;
+        for (Point point : arrayTabulatedFunction()) {
+            assertEquals(point.x, arrayTabulatedFunction().getX(i++));
         }
     }
 }
