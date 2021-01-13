@@ -13,11 +13,11 @@ public class MiddleSteppingDifferentialOperatorTest {
         double step = 0.001;
 
         MiddleSteppingDifferentialOperator differentialOperator = new MiddleSteppingDifferentialOperator(step);
-        assertEquals(differentialOperator.derive(new SqrFunction()).apply(1), 4, error);
-        assertEquals(differentialOperator.derive(new SqrFunction()).apply(2), 8, error);
-        assertEquals(differentialOperator.derive(new SqrFunction()).apply(3), 12, error);
-        assertEquals(differentialOperator.derive(new SqrFunction()).apply(4), 16, error);
-        assertEquals(differentialOperator.derive(new SqrFunction()).apply(5), 20, error);
+        assertEquals(differentialOperator.derive(new SqrFunction()).apply(1), 2, error);
+        assertEquals(differentialOperator.derive(new SqrFunction()).apply(2), 4, error);
+        assertEquals(differentialOperator.derive(new SqrFunction()).apply(3), 6, error);
+        assertEquals(differentialOperator.derive(new SqrFunction()).apply(4), 8, error);
+        assertEquals(differentialOperator.derive(new SqrFunction()).apply(5), 10, error);
 
     }
 }
