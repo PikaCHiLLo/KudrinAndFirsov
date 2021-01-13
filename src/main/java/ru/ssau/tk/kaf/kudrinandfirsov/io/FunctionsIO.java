@@ -2,15 +2,19 @@ package ru.ssau.tk.kaf.kudrinandfirsov.io;
 
 import ru.ssau.tk.kaf.kudrinandfirsov.functions.Point;
 import ru.ssau.tk.kaf.kudrinandfirsov.functions.TabulatedFunction;
+import ru.ssau.tk.kaf.kudrinandfirsov.functions.factory.TabulatedFunctionFactory;
 
 import java.io.*;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
 
 final public class FunctionsIO {
     private FunctionsIO() {
         throw new UnsupportedOperationException();
     }
 
-    static void writeTabulatedFunction(BufferedWriter writer, TabulatedFunction function){
+    public static void writeTabulatedFunction(BufferedWriter writer, TabulatedFunction function){
         PrintWriter printWriter = new PrintWriter(writer);
         printWriter.println(function.getCount());
         for (Point temp : function) {
@@ -18,7 +22,7 @@ final public class FunctionsIO {
         }
         printWriter.flush();
     }
-    static void writeTabulatedFunction(BufferedOutputStream outputStream, TabulatedFunction function) throws IOException {
+    public static void writeTabulatedFunction(BufferedOutputStream outputStream, TabulatedFunction function) throws IOException {
         DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
         dataOutputStream.writeInt(function.getCount());
         for (Point point : function) {
@@ -26,5 +30,21 @@ final public class FunctionsIO {
             dataOutputStream.writeDouble(point.y);
         }
         dataOutputStream.flush();
+    }
+    public static TabulatedFunction readTabulatedFunction(BufferedReader reader, TabulatedFunctionFactory factory) throws IOException {
+        int count = Integer.parseInt(reader.readLine());
+        double[] xValues = new double[count];
+        double[] yValues = new double[count];
+        NumberFormat formatter = NumberFormat.getInstance(Locale.forLanguageTag("ru"));
+        for (int i = 0; i < count; i++) {
+            String tempString = reader.readLine();
+            try {
+                xValues[i] = formatter.parse(tempString.split(" ")[0]).doubleValue();
+                yValues[i] = formatter.parse(tempString.split(" ")[1]).doubleValue();
+            } catch (ParseException parseException) {
+                throw new IOException(parseException);
+            }
+        }
+        return factory.create(xValues, yValues);
     }
 }
