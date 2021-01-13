@@ -14,7 +14,7 @@ final public class FunctionsIO {
         throw new UnsupportedOperationException();
     }
 
-    public static void writeTabulatedFunction(BufferedWriter writer, TabulatedFunction function){
+    public static void writeTabulatedFunction(BufferedWriter writer, TabulatedFunction function) {
         PrintWriter printWriter = new PrintWriter(writer);
         printWriter.println(function.getCount());
         for (Point temp : function) {
@@ -22,6 +22,7 @@ final public class FunctionsIO {
         }
         printWriter.flush();
     }
+
     public static void writeTabulatedFunction(BufferedOutputStream outputStream, TabulatedFunction function) throws IOException {
         DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
         dataOutputStream.writeInt(function.getCount());
@@ -31,6 +32,7 @@ final public class FunctionsIO {
         }
         dataOutputStream.flush();
     }
+
     public static TabulatedFunction readTabulatedFunction(BufferedReader reader, TabulatedFunctionFactory factory) throws IOException {
         int count = Integer.parseInt(reader.readLine());
         double[] xValues = new double[count];
@@ -44,6 +46,18 @@ final public class FunctionsIO {
             } catch (ParseException parseException) {
                 throw new IOException(parseException);
             }
+        }
+        return factory.create(xValues, yValues);
+    }
+
+    public static TabulatedFunction readTabulatedFunction(BufferedInputStream inputStream, TabulatedFunctionFactory factory) throws IOException {
+        DataInputStream dataInputStream = new DataInputStream(inputStream);
+        int count = dataInputStream.readInt();
+        double[] xValues = new double[count];
+        double[] yValues = new double[count];
+        for (int i = 0; i < count; i++) {
+            xValues[i] = dataInputStream.readDouble();
+            yValues[i] = dataInputStream.readDouble();
         }
         return factory.create(xValues, yValues);
     }
