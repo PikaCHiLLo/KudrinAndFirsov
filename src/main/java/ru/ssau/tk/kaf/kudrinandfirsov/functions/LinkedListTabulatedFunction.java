@@ -1,11 +1,14 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
 import ru.ssau.tk.kaf.kudrinandfirsov.exceptions.InterpolationException;
+
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
 
+    private static final long serialVersionUID = 7111641501642184781L;
     private Node head;
     private int count;
 
@@ -37,7 +40,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
-        checkLengthIsTheSame(xValues,yValues);
+        checkLengthIsTheSame(xValues, yValues);
         checkSorted(xValues);
         if (xValues.length < 2) {
             throw new IllegalArgumentException("недопустимый размер узла(меньше двух)");

@@ -1,12 +1,15 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
 import ru.ssau.tk.kaf.kudrinandfirsov.exceptions.InterpolationException;
+
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
 
+    private static final long serialVersionUID = -925425195217095725L;
     private final double[] xValues;
     private final double[] yValues;
     protected int count;
