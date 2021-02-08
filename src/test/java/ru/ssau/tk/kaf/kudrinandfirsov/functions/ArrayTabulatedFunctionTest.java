@@ -59,13 +59,10 @@ public class ArrayTabulatedFunctionTest {
         final double[] yValues = new double[]{-6, -4, -2, 0, 2, 4, 6, 8, 10};
         ArrayTabulatedFunction array1 = new ArrayTabulatedFunction(xValues, yValues);
         ArrayTabulatedFunction array2 = new ArrayTabulatedFunction(tenthFunction, 1, 9, 17);
-        ArrayTabulatedFunction array3 = new ArrayTabulatedFunction(tenthFunction, 9, 1, 17);
         array1.setY(0, -6);
         assertEquals(array1.getY(0), -6, error);
         array2.setY(1, -6);
         assertEquals(array2.getY(1), -6, error);
-        array3.setY(1, -6);
-        assertEquals(array3.getY(1), -6, error);
     }
 
     @Test
@@ -135,8 +132,8 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(arrayTabulatedMathFunction().interpolate(10, arrayTabulatedMathFunction().floorIndexOfX(10)), 1, error);
 
         assertThrows(InterpolationException.class, () -> {
-            arrayTabulatedFunction().interpolate(2.6, arrayTabulatedMathFunction().floorIndexOfX(2.6));
-            arrayTabulatedMathFunction().interpolate(2.6, arrayTabulatedMathFunction().floorIndexOfX(2.6));
+            arrayTabulatedFunction().interpolate(3.6, arrayTabulatedFunction().floorIndexOfX(2.6));
+            arrayTabulatedMathFunction().interpolate(3.6, arrayTabulatedMathFunction().floorIndexOfX(2.6));
         });
     }
 
@@ -166,18 +163,15 @@ public class ArrayTabulatedFunctionTest {
             Point point = iterator.next();
             assertEquals(point.x, arrayTabulatedFunction().getX(i++));
         }
+        assertEquals(i, arrayTabulatedFunction().count);
         assertThrows(NoSuchElementException.class, () -> {
             Point point = iterator.next();
         });
-        assertEquals(i, arrayTabulatedFunction().count);
         i = 0;
         for (Point point : arrayTabulatedFunction()) {
             assertEquals(point.x, arrayTabulatedFunction().getX(i++));
         }
         assertEquals(i, arrayTabulatedFunction().count);
-        assertThrows(NoSuchElementException.class, () -> {
-            Point point = iterator.next();
-        });
     }
 
     @Test

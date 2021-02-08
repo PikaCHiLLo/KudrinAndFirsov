@@ -132,7 +132,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
         if (floorIndexOfX == count - 1) {
             return extrapolateRight(x);
         }
-        if (x < xValues[floorIndexOfX] || x > xValues[floorIndexOfX + 1]) {
+        if ((x < xValues[floorIndexOfX]) || (x > xValues[floorIndexOfX + 1])) {
             throw new InterpolationException("x не в рамках интерполяции");
         }
         return interpolate(x, xValues[floorIndexOfX], xValues[floorIndexOfX + 1], yValues[floorIndexOfX], yValues[floorIndexOfX + 1]);
