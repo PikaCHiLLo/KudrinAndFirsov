@@ -1,8 +1,10 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.exceptions;
 
-import ru.ssau.tk.kaf.kudrinandfirsov.functions.factory.TabulatedFunctionFactory;
+import java.io.Serializable;
 
-public class InconsistentFunctionsException extends RuntimeException {
+public class InconsistentFunctionsException extends RuntimeException implements Serializable {
+    private static final long serialVersionUID = -7954248414542844377L;
+
     public InconsistentFunctionsException() {
     }
 

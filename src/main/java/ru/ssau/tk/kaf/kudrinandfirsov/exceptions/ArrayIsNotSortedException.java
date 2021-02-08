@@ -1,6 +1,10 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.exceptions;
 
-public class ArrayIsNotSortedException extends RuntimeException {
+import java.io.Serializable;
+
+public class ArrayIsNotSortedException extends RuntimeException implements Serializable {
+    private static final long serialVersionUID = 7338600599336649244L;
+
     public ArrayIsNotSortedException() {
     }
 

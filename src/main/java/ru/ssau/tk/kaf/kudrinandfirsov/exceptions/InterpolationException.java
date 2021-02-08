@@ -1,6 +1,10 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.exceptions;
 
-public class InterpolationException extends RuntimeException {
+import java.io.Serializable;
+
+public class InterpolationException extends RuntimeException implements Serializable {
+    private static final long serialVersionUID = 667162581669708308L;
+
     public InterpolationException() {
     }
 

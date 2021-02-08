@@ -1,14 +1,15 @@
 package ru.ssau.tk.kaf.kudrinandfirsov.functions;
 
 import org.testng.annotations.Test;
-
 import ru.ssau.tk.kaf.kudrinandfirsov.exceptions.ArrayIsNotSortedException;
-
 import ru.ssau.tk.kaf.kudrinandfirsov.exceptions.DifferentLengthOfArraysException;
-
 import ru.ssau.tk.kaf.kudrinandfirsov.exceptions.InterpolationException;
 
-import static org.testng.Assert.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertThrows;
 
 public class LinkedListTabulatedFunctionTest {
 
@@ -87,6 +88,11 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(linkedListTabulatedFunction1().floorIndexOfX(-1), 0, 0.00001);
         assertEquals(linkedListTabulatedFunction3().floorIndexOfX(1.5), 4, 0.00001);
         assertEquals(linkedListTabulatedFunction3().floorIndexOfX(-2.5), 0, 0.00001);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            linkedListTabulatedFunction1().floorIndexOfX(-5);
+            linkedListTabulatedFunction3().floorIndexOfX(-5);
+        });
     }
 
     @Test
@@ -111,6 +117,11 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(linkedListTabulatedFunction1().interpolate(0.5, 2), 1, 0.00001);
         assertEquals(linkedListTabulatedFunction3().interpolate(0.5, 3), 0.05, 0.00001);
         assertEquals(linkedListTabulatedFunction3().interpolate(2.2, 5), 0.5, 0.00001);
+
+        assertThrows(InterpolationException.class, () -> {
+            linkedListTabulatedFunction1().interpolate(1.6, linkedListTabulatedFunction1().floorIndexOfX(1.6));
+            linkedListTabulatedFunction1().interpolate(1.6, linkedListTabulatedFunction1().floorIndexOfX(1.6));
+        });
     }
 
     @Test
@@ -150,5 +161,32 @@ public class LinkedListTabulatedFunctionTest {
             new LinkedListTabulatedFunction(new double[]{1, 5, 3, 4}, new double[]{1, 2, 3, 4});
             new LinkedListTabulatedFunction(new double[]{3, 2}, new double[]{1, 2});
         });
+    }
+
+    @Test
+    public void testIteratorWhile() {
+        Iterator<Point> iterator = linkedListTabulatedFunction1().iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(linkedListTabulatedFunction1().getX(i++), point.x, 0.00001);
+        }
+        assertThrows(NoSuchElementException.class, () -> {
+            Point point = iterator.next();
+        });
+        assertEquals(i, linkedListTabulatedFunction1().getCount());
+    }
+
+    @Test
+    public void testIteratorForEach() {
+        Iterator<Point> iterator = linkedListTabulatedFunction1().iterator();
+        int i = 0;
+        for (Point point : linkedListTabulatedFunction1()) {
+            assertEquals(linkedListTabulatedFunction1().getX(i++), point.x, 0.00001);
+        }
+        assertThrows(NoSuchElementException.class, () -> {
+            Point point = iterator.next();
+        });
+        assertEquals(i, linkedListTabulatedFunction1().getCount());
     }
 }

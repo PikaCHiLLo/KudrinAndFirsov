@@ -46,6 +46,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         if (xValues.length < 2) {
             throw new IllegalArgumentException("недопустимый размер узла(меньше двух)");
         }
+
         for (int i = 0; i < xValues.length; i++) {
             this.addNode(xValues[i], yValues[i]);
         }
@@ -54,6 +55,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
         if (count < 2) {
             throw new IllegalArgumentException("недопустимый размер узла(меньше двух)");
+        }
+        if (xFrom > xTo) {
+            throw new IllegalArgumentException("xFrom > xTo");
         }
         double step = (xTo - xFrom) / (count - 1);
         for (int i = 0; i < count; i++) {
