@@ -110,6 +110,8 @@ public class ArrayTabulatedFunctionTest {
 
         assertThrows(IllegalArgumentException.class, () -> {
             arrayTabulatedFunction().floorIndexOfX(-4);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
             arrayTabulatedMathFunction().floorIndexOfX(0);
         });
     }
@@ -133,6 +135,8 @@ public class ArrayTabulatedFunctionTest {
 
         assertThrows(InterpolationException.class, () -> {
             arrayTabulatedFunction().interpolate(3.6, arrayTabulatedFunction().floorIndexOfX(2.6));
+        });
+        assertThrows(InterpolationException.class, () -> {
             arrayTabulatedMathFunction().interpolate(3.6, arrayTabulatedMathFunction().floorIndexOfX(2.6));
         });
     }
@@ -141,7 +145,11 @@ public class ArrayTabulatedFunctionTest {
     public void testCheckLengthIsTheSame() {
         assertThrows(DifferentLengthOfArraysException.class, () -> {
             new ArrayTabulatedFunction(new double[]{1, 2, 3, 4, 5}, new double[]{1, 2, 3, 4});
+        });
+            assertThrows(DifferentLengthOfArraysException.class, () -> {
             new ArrayTabulatedFunction(new double[]{1, 2, 3, 4}, new double[]{1, 2, 3, 4, 5});
+            });
+                assertThrows(DifferentLengthOfArraysException.class, () -> {
             new ArrayTabulatedFunction(new double[]{1}, new double[]{});
         });
     }
@@ -150,7 +158,9 @@ public class ArrayTabulatedFunctionTest {
     public void testCheckSorted() {
         assertThrows(ArrayIsNotSortedException.class, () -> {
             new ArrayTabulatedFunction(new double[]{5, 2, 3, 4, 5}, new double[]{1, 2, 3, 4, 5});
-            new ArrayTabulatedFunction(new double[]{1, 5, 3, 4}, new double[]{1, 2, 3, 4});
+        });
+        assertThrows(ArrayIsNotSortedException.class, () -> new ArrayTabulatedFunction(new double[]{1, 5, 3, 4}, new double[]{1, 2, 3, 4}));
+        assertThrows(ArrayIsNotSortedException.class, () -> {
             new ArrayTabulatedFunction(new double[]{3, 2}, new double[]{1, 2});
         });
     }
@@ -159,8 +169,12 @@ public class ArrayTabulatedFunctionTest {
     public void testIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> {
             new ArrayTabulatedFunction(new double[]{1}, new double[]{1});
-            new ArrayTabulatedFunction(tenthFunction, 1, 9, 2);
-            new ArrayTabulatedFunction(tenthFunction, 9, 1, 17);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+        new ArrayTabulatedFunction(tenthFunction, 1, 9, 1);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+        new ArrayTabulatedFunction(tenthFunction, 9, 1, 17);
         });
     }
 

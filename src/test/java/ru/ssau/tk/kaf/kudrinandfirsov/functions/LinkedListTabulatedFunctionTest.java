@@ -92,6 +92,8 @@ public class LinkedListTabulatedFunctionTest {
 
         assertThrows(IllegalArgumentException.class, () -> {
             linkedListTabulatedFunction1().floorIndexOfX(-5);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
             linkedListTabulatedFunction3().floorIndexOfX(-5);
         });
     }
@@ -121,6 +123,8 @@ public class LinkedListTabulatedFunctionTest {
 
         assertThrows(InterpolationException.class, () -> {
             linkedListTabulatedFunction1().interpolate(2.6, linkedListTabulatedFunction1().floorIndexOfX(1.6));
+        });
+        assertThrows(InterpolationException.class, () -> {
             linkedListTabulatedFunction1().interpolate(2.6, linkedListTabulatedFunction1().floorIndexOfX(1.6));
         });
     }
@@ -141,7 +145,11 @@ public class LinkedListTabulatedFunctionTest {
     public void testInterpolationException() {
         assertThrows(InterpolationException.class, () -> {
             linkedListTabulatedFunction1().interpolate(-2, 1);
+        });
+        assertThrows(InterpolationException.class, () -> {
             linkedListTabulatedFunction3().interpolate(-1, 5);
+        });
+        assertThrows(InterpolationException.class, () -> {
             linkedListTabulatedFunction3().interpolate(-2, 3);
         });
     }
@@ -150,7 +158,11 @@ public class LinkedListTabulatedFunctionTest {
     public void testCheckLengthIsTheSame() {
         assertThrows(DifferentLengthOfArraysException.class, () -> {
             new LinkedListTabulatedFunction(new double[]{1, 2, 3, 4, 5}, new double[]{1, 2, 3, 4});
+        });
+        assertThrows(DifferentLengthOfArraysException.class, () -> {
             new LinkedListTabulatedFunction(new double[]{1, 2, 3, 4}, new double[]{1, 2, 3, 4, 5});
+        });
+        assertThrows(DifferentLengthOfArraysException.class, () -> {
             new LinkedListTabulatedFunction(new double[]{1}, new double[]{});
         });
     }
@@ -159,7 +171,11 @@ public class LinkedListTabulatedFunctionTest {
     public void testCheckSorted() {
         assertThrows(ArrayIsNotSortedException.class, () -> {
             new LinkedListTabulatedFunction(new double[]{5, 2, 3, 4, 5}, new double[]{1, 2, 3, 4, 5});
+        });
+        assertThrows(ArrayIsNotSortedException.class, () -> {
             new LinkedListTabulatedFunction(new double[]{1, 5, 3, 4}, new double[]{1, 2, 3, 4});
+        });
+        assertThrows(ArrayIsNotSortedException.class, () -> {
             new LinkedListTabulatedFunction(new double[]{3, 2}, new double[]{1, 2});
         });
     }
@@ -168,7 +184,11 @@ public class LinkedListTabulatedFunctionTest {
     public void testIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> {
             new LinkedListTabulatedFunction(new double[]{1}, new double[]{1});
-            new LinkedListTabulatedFunction(tenthFunction, 1, 9, 2);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            new LinkedListTabulatedFunction(tenthFunction, 1, 9, 1);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
             new LinkedListTabulatedFunction(tenthFunction, 9, 1, 17);
         });
     }
