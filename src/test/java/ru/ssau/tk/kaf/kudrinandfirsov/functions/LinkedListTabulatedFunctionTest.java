@@ -191,6 +191,15 @@ public class LinkedListTabulatedFunctionTest {
         assertThrows(IllegalArgumentException.class, () -> {
             new LinkedListTabulatedFunction(tenthFunction, 9, 1, 17);
         });
+        assertThrows(IllegalArgumentException.class, () -> {
+            linkedListTabulatedFunction1().getNode(-1);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            linkedListTabulatedFunction1().getNode(7);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            linkedListTabulatedFunction1().floorNodeOfX(-3);
+        });
     }
 
 
