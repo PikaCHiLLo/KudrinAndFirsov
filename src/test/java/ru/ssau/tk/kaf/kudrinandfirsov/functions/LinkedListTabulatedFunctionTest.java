@@ -13,6 +13,8 @@ import static org.testng.Assert.assertThrows;
 
 public class LinkedListTabulatedFunctionTest {
 
+    private final MathFunction tenthFunction = new TenthFunction();
+
     public LinkedListTabulatedFunction linkedListTabulatedFunction1() {
         final double[] xValues = new double[]{-2, -1, 0, 1, 2};
         final double[] yValues = new double[]{-4, -2, 0, 2, 4};
@@ -161,6 +163,16 @@ public class LinkedListTabulatedFunctionTest {
             new LinkedListTabulatedFunction(new double[]{3, 2}, new double[]{1, 2});
         });
     }
+
+    @Test
+    public void testIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new LinkedListTabulatedFunction(new double[]{1}, new double[]{1});
+            new LinkedListTabulatedFunction(tenthFunction, 1, 9, 2);
+            new LinkedListTabulatedFunction(tenthFunction, 9, 1, 17);
+        });
+    }
+
 
     @Test
     public void testIteratorWhile() {

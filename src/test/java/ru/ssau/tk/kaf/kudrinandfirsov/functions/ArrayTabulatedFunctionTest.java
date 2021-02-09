@@ -156,6 +156,15 @@ public class ArrayTabulatedFunctionTest {
     }
 
     @Test
+    public void testIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new ArrayTabulatedFunction(new double[]{1}, new double[]{1});
+            new ArrayTabulatedFunction(tenthFunction, 1, 9, 2);
+            new ArrayTabulatedFunction(tenthFunction, 9, 1, 17);
+        });
+    }
+
+    @Test
     public void testIterator() {
         Iterator<Point> iterator = arrayTabulatedFunction().iterator();
         int i = 0;
