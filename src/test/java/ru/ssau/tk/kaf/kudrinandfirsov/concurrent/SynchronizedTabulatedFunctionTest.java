@@ -34,7 +34,7 @@ public class SynchronizedTabulatedFunctionTest {
 
     @Test
     public void testGetX() {
-        assertEquals(getSynchronizedList().getX(0) , 1, DELTA);
+        assertEquals(getSynchronizedList().getX(0), 1, DELTA);
         assertEquals(getSynchronizedList().getX(2), 3, DELTA);
         assertEquals(getSynchronizedList().getX(5), 6, DELTA);
 
@@ -45,7 +45,7 @@ public class SynchronizedTabulatedFunctionTest {
 
     @Test
     public void testGetY() {
-        assertEquals(getSynchronizedList().getY(0) , 10, DELTA);
+        assertEquals(getSynchronizedList().getY(0), 10, DELTA);
         assertEquals(getSynchronizedList().getY(2), 30, DELTA);
         assertEquals(getSynchronizedList().getY(5), 60, DELTA);
 
@@ -82,18 +82,18 @@ public class SynchronizedTabulatedFunctionTest {
     @Test
     public void testSetY() {
         getSynchronizedList().setY(0, 11);
-        assertEquals(getSynchronizedList().getY(0) , 11, DELTA);
+        assertEquals(getSynchronizedList().getY(0), 11, DELTA);
         getSynchronizedList().setY(3, 44);
-        assertEquals(getSynchronizedList().getY(3) , 44, DELTA);
+        assertEquals(getSynchronizedList().getY(3), 44, DELTA);
         getSynchronizedList().setY(6, 77);
-        assertEquals(getSynchronizedList().getY(6) , 77, DELTA);
+        assertEquals(getSynchronizedList().getY(6), 77, DELTA);
 
         getSynchronizedArray().setY(2, 33);
-        assertEquals(getSynchronizedArray().getY(2) , 33, DELTA);
+        assertEquals(getSynchronizedArray().getY(2), 33, DELTA);
         getSynchronizedArray().setY(4, 55);
-        assertEquals(getSynchronizedArray().getY(4) , 55, DELTA);
+        assertEquals(getSynchronizedArray().getY(4), 55, DELTA);
         getSynchronizedArray().setY(5, 66);
-        assertEquals(getSynchronizedArray().getY(5) , 66, DELTA);
+        assertEquals(getSynchronizedArray().getY(5), 66, DELTA);
     }
 
     @Test
