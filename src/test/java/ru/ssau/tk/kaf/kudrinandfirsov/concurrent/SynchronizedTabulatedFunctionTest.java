@@ -81,11 +81,8 @@ public class SynchronizedTabulatedFunctionTest {
 
     @Test
     public void testSetY() {
-        final double[] xValues = new double[]{1, 2, 3, 4, 5};
-        final double[] yValues = new double[]{6, 7, 8, 9, 10};
-        SynchronizedTabulatedFunction synchronizedList = new SynchronizedTabulatedFunction(new LinkedListTabulatedFunction(xValues, yValues), object);
-        SynchronizedTabulatedFunction synchronizedArray = new SynchronizedTabulatedFunction(new ArrayTabulatedFunction(xValues, yValues), object);
 
+        SynchronizedTabulatedFunction synchronizedList = getSynchronizedList();
         synchronizedList.setY(0, 11);
         assertEquals(synchronizedList.getY(0), 11, DELTA);
         synchronizedList.setY(2, 44);
@@ -93,6 +90,7 @@ public class SynchronizedTabulatedFunctionTest {
         synchronizedList.setY(4, 77);
         assertEquals(synchronizedList.getY(4), 77, DELTA);
 
+        SynchronizedTabulatedFunction synchronizedArray = getSynchronizedArray();
         synchronizedArray.setY(0, 33);
         assertEquals(synchronizedArray.getY(0), 33, DELTA);
         synchronizedArray.setY(2, 55);
