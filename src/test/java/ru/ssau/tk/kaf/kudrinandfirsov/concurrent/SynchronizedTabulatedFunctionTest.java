@@ -81,24 +81,24 @@ public class SynchronizedTabulatedFunctionTest {
 
     @Test
     public void testSetY() {
-        final double[] xValues1 = new double[]{1, 2, 3, 4, 5};
-        final double[] yValues1 = new double[]{6, 7, 8, 9, 10};
-        SynchronizedTabulatedFunction getSynchronizedList1 = new SynchronizedTabulatedFunction(new LinkedListTabulatedFunction(xValues1, yValues1), object);
-        SynchronizedTabulatedFunction getSynchronizedArray1 = new SynchronizedTabulatedFunction(new ArrayTabulatedFunction(xValues1, yValues1), object);
+        final double[] xValues = new double[]{1, 2, 3, 4, 5};
+        final double[] yValues = new double[]{6, 7, 8, 9, 10};
+        SynchronizedTabulatedFunction synchronizedList = new SynchronizedTabulatedFunction(new LinkedListTabulatedFunction(xValues, yValues), object);
+        SynchronizedTabulatedFunction synchronizedArray = new SynchronizedTabulatedFunction(new ArrayTabulatedFunction(xValues, yValues), object);
 
-        getSynchronizedList1.setY(0, 11);
-        assertEquals(getSynchronizedList1.getY(0), 11, DELTA);
-        getSynchronizedList1.setY(2, 44);
-        assertEquals(getSynchronizedList1.getY(2), 44, DELTA);
-        getSynchronizedList1.setY(4, 77);
-        assertEquals(getSynchronizedList1.getY(4), 77, DELTA);
+        synchronizedList.setY(0, 11);
+        assertEquals(synchronizedList.getY(0), 11, DELTA);
+        synchronizedList.setY(2, 44);
+        assertEquals(synchronizedList.getY(2), 44, DELTA);
+        synchronizedList.setY(4, 77);
+        assertEquals(synchronizedList.getY(4), 77, DELTA);
 
-        getSynchronizedArray1.setY(0, 33);
-        assertEquals(getSynchronizedArray1.getY(0), 33, DELTA);
-        getSynchronizedArray1.setY(2, 55);
-        assertEquals(getSynchronizedArray1.getY(2), 55, DELTA);
-        getSynchronizedArray1.setY(4, 66);
-        assertEquals(getSynchronizedArray1.getY(4), 66, DELTA);
+        synchronizedArray.setY(0, 33);
+        assertEquals(synchronizedArray.getY(0), 33, DELTA);
+        synchronizedArray.setY(2, 55);
+        assertEquals(synchronizedArray.getY(2), 55, DELTA);
+        synchronizedArray.setY(4, 66);
+        assertEquals(synchronizedArray.getY(4), 66, DELTA);
     }
 
     @Test
