@@ -55,9 +55,6 @@ public class MathFunctionWindow extends JDialog {
                     functionStr = e.getItem().toString();
                     System.out.println(functionStr);
                     function = map.get(functionStr);
-                } else {
-                    JOptionPane.showMessageDialog(dialog, "Вы умен, раз смогли увидеть это сообщение");
-                    dispose();
                 }
         });
         JButton create = new JButton("Создать");
